@@ -15,7 +15,7 @@
 
 ---
 
-## 👥 Auteurs
+## 👥 Auteur
 
 **Iheb Zaouali** 
 
@@ -526,7 +526,7 @@ Projet_Reseaux_Locaux_Iheb-Zaouali_Iheb-Rahmeni_3AGE1/
 
 ## 📞 Contact
 
-**Auteurs** :  
+**Auteur** :  
 - Iheb Zaouali : iheb.zaouali@etudiant-enit.utm.tn  
 
 ---
