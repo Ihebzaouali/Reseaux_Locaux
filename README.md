@@ -528,7 +528,6 @@ Projet_Reseaux_Locaux_Iheb-Zaouali_Iheb-Rahmeni_3AGE1/
 
 **Auteurs** :  
 - Iheb Zaouali : iheb.zaouali@etudiant-enit.utm.tn  
-- Iheb Rahmeni : iheb.rahmeni@etudiant-enit.utm.tn
 
 ---
 
@@ -541,7 +540,6 @@ Utilisation libre pour fins éducatives et de recherche.
 
 ## 🙏 Remerciements
 
-- Dr. Khaled Jelassi (encadrement)
 - Communauté Arduino et Node-RED
 - STMicroelectronics (BSP drivers)
 
