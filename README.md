@@ -17,11 +17,8 @@
 
 ## 👥 Auteurs
 
-**Iheb Zaouali** & **Iheb Rahmeni**
-
-**Encadrant** : Dr. Khaled Jelassi  
+**Iheb Zaouali** 
 **Établissement** : ENIT - École Nationale d'Ingénieurs de Tunis  
-**Cours** : Réseaux Locaux (3AGE1)
 
 ---
 
