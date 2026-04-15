@@ -15,14 +15,6 @@
 
 ---
 
-## 👥 Auteur
-
-**Iheb Zaouali** 
-
-**Établissement** : ENIT - École Nationale d'Ingénieurs de Tunis  
-
----
-
 ## 📋 Table des Matières
 
 - [🎯 Aperçu du Projet](#-aperçu-du-projet)
