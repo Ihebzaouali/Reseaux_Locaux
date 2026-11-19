@@ -7,7 +7,7 @@ Ajouter ces 3 lignes à la fin du fichier `mosquitto.conf` :
 ```conf
 listener 1883 0.0.0.0
 allow_anonymous false
-password_file C:\Users\ihebz\Desktop\mosquitto\passwd
+password_file C:\mosquitto\passwd
 ```
 
 | Ligne | Rôle |
@@ -19,7 +19,7 @@ password_file C:\Users\ihebz\Desktop\mosquitto\passwd
 ## 2. Création du fichier de mots de passe
 
 ```bat
-mosquitto_passwd -c C:\Users\ihebz\Desktop\mosquitto\passwd iheb
+mosquitto_passwd -c C:\mosquitto\passwd <USER>
 ```
 
 Entrer ensuite le mot de passe de l'utilisateur lorsqu'il est demandé (`<PASSWORD>`).
