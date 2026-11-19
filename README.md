@@ -9,7 +9,7 @@
 
 **Projet de Réseaux Locaux - ENIT 2026**
 
- [📹 Vidéo Démo](#-démonstration) •[📖 Documentation](#-table-des-matières) • [🚀 Installation](#-installation-rapide)
+[📹 Vidéo Démo](#-démonstration) • [📖 Documentation](#-table-des-matières) • [🚀 Installation](#-installation-rapide)
 
 </div>
 
@@ -19,13 +19,13 @@
 
 - [🎯 Aperçu du Projet](#-aperçu-du-projet)
 - [✨ Fonctionnalités](#-fonctionnalités)
-- [🏗️ Architecture](#️-architecture)
+- [📐 Architecture](#-architecture)
 - [🔧 Composants](#-composants)
 - [📊 Métriques](#-métriques)
 - [🚀 Installation Rapide](#-installation-rapide)
 - [📱 Dashboard](#-dashboard)
-- [🗄️ Base de Données](#️-base-de-données)
-- [⚠️ Problèmes et Solutions](#️-problèmes-et-solutions)
+- [💾 Base de Données](#-base-de-données)
+- [🐛 Problèmes et Solutions](#-problèmes-et-solutions)
 - [🎥 Démonstration](#-démonstration)
 - [🎓 Conclusion](#-conclusion)
 - [🚀 Perspectives](#-perspectives)
@@ -63,17 +63,17 @@ Système IoT complet de **monitoring environnemental et de détection de mouveme
 
 ### Fonctionnalités Clés
 
-- ✅ **Acquisition temps réel** : 1 Hz (1 lecture/seconde)
+- ✅ **Acquisition temps réel** : 1 valeur publiée par seconde (cycle complet des 12 topics en 12 s)
 - ✅ **Communication WiFi** : 802.11 b/g/n
-- ✅ **Publication MQTT** : 12 topics différents
+- ✅ **Publication MQTT** : 12 topics différents, avec authentification (utilisateur / mot de passe)
 - ✅ **Reconnexion automatique** : En cas de perte de connexion
 - ✅ **Dashboard interactif** : 3 pages de visualisation
 - ✅ **Stockage historique** : Base MongoDB
-- ✅ **Graphiques temps réel** : Mise à jour < 1 seconde
+- ✅ **Graphiques temps réel** : Mise à jour à chaque message MQTT reçu
 
 ---
 
-## 🏗️ Architecture
+## 📐 Architecture
 
 ### Architecture Globale
 
@@ -132,7 +132,7 @@ Système IoT complet de **monitoring environnemental et de détection de mouveme
 
 - **Langage** : C/C++ (Arduino), JavaScript (Node-RED)
 - **IDE** : Arduino IDE 2.x
-- **Broker MQTT** : Mosquitto 2.x (Windows local
+- **Broker MQTT** : Mosquitto 2.x (Windows, local)
 - **Orchestration** : Node-RED 3.x
 - **Base de données** : MongoDB Atlas (Cloud NoSQL)
 - **Dashboard** : Node-RED Dashboard
@@ -168,7 +168,7 @@ Système IoT complet de **monitoring environnemental et de détection de mouveme
 
 | Métrique | Valeur | Objectif | Status |
 |----------|--------|----------|--------|
-| Fréquence acquisition | 1 Hz | 1 Hz | ✅ |
+| Cadence de publication | 1 topic/s (cycle de 12 s) | 1 topic/s | ✅ |
 | Latence MQTT | < 50ms | < 100ms | ✅ |
 | Perte de paquets | < 0.1% | < 1% | ✅ |
 | Temps reconnexion | 5-10s | < 15s | ✅ |
@@ -190,7 +190,7 @@ Système IoT complet de **monitoring environnemental et de détection de mouveme
 
 Vérifier que vous avez installé :
 - **Node.js** : v18.x ou supérieur → [Télécharger](https://nodejs.org/)
-- **Arduino IDE** : v2.x (ou v1.8.6+) → [Télécharger](https://www.arduino.cc/en/software)
+- **Arduino IDE** : v2.x → [Télécharger](https://www.arduino.cc/en/software)
 - **Git** (optionnel) → [Télécharger](https://git-scm.com/)
 
 Vérifier les versions dans PowerShell ou CMD :
@@ -199,37 +199,20 @@ node --version    # Doit afficher v18.x.x ou supérieur
 npm --version     # Doit afficher 9.x.x ou supérieur
 ```
 
-**Note importante** : Ce projet utilise MongoDB Atlas (cloud) au lieu d'une installation locale, et Mosquitto MQTT Broker local sur Windows.
+**Note importante** : Ce projet utilise MongoDB Atlas (cloud) au lieu d'une installation locale, et un broker Mosquitto local sur Windows.
 
 ---
 
-### 1️⃣ Installation Mosquitto MQTT Broker (Windows)
+### 1️⃣ Installation de Mosquitto (Windows)
 
-#### Prérequis - Dépendances Windows
+1. Télécharger l'installeur Windows (version 2.x) depuis : https://mosquitto.org/download/
+2. Exécuter l'installeur **en tant qu'administrateur** (installation par défaut dans `C:\Program Files\mosquitto\`). Les dépendances (OpenSSL, pthreads) sont incluses dans les versions récentes.
+3. Configurer l'authentification (obligatoire) : voir [README_Authentification.md](config/README_Authentification.md)
+4. Lancer le broker et tester la communication : voir [README_Commandes.md](docs/README_Commandes.md)
 
-Pour Windows 7/8/10, installer d'abord les dépendances :
+> ⚠️ Avec `allow_anonymous false`, toutes les commandes `mosquitto_sub` / `mosquitto_pub` nécessitent `-u <USER> -P <PASSWORD>`.
 
-**1. OpenSSL** (obligatoire)
-- Télécharger depuis : https://slproweb.com/products/Win32OpenSSL.html
-- Installer `Win32 OpenSSL v1.1.1` ou version supérieure
-- Les DLLs nécessaires : `libeay32.dll`, `ssleay32.dll`
-
-**2. pthreads** (obligatoire pour Windows 7/8)
-- Télécharger depuis : ftp://sources.redhat.com/pub/pthreads-win32/dll-latest/dll/x86/
-- DLL nécessaire : `pthreadVC2.dll`
-- Copier dans `C:\Program Files\mosquitto\` ou `C:\Windows\System32\`
-
-#### Télécharger et Installer Mosquitto
-
-1. **Télécharger** la version Windows depuis : https://mosquitto.org/download/
-   - Fichier recommandé : `mosquitto-1.6.x-install-windows-x64.exe` ou version plus récente
-   - Pour référence : http://www.eclipse.org/downloads/download.php?file=/mosquitto/binary/win32/mosquitto-1.4.8-install-win32.exe
-
-2. **Exécuter l'installeur** en tant qu'administrateur
-3. **Installer** dans `C:\Program Files\mosquitto\` (par défaut)
-4. **Copier les DLLs** d'OpenSSL et pthreads dans le dossier d'installation
-
-### 2️⃣ Installation Node-RED (Windows)
+### 2️⃣ Installation de Node-RED (Windows)
 
 #### Installation globale via npm
 
@@ -273,10 +256,12 @@ Accès :
 1. Ouvrir http://localhost:1880
 2. Menu ☰ (coin supérieur droit) → Import
 3. Sélectionner l'onglet "Clipboard"
-4. Coller le contenu de votre fichier `node-red/flows.json`
+4. Coller le contenu du fichier `node-red/flows.json`
 5. Cliquer sur "Import"
-6. Positionner les flows sur l'éditeur
+6. Modifier les nœuds MQTT : adresse IP du broker, nom d'utilisateur, mot de passe
 7. Cliquer sur **"Deploy"** (bouton rouge en haut à droite)
+
+Plus de détails : [README_Configuration.md](node-red/README_Configuration.md)
 
 #### Vérifier l'installation des palettes
 
@@ -289,7 +274,7 @@ Si non installés, les rechercher et cliquer sur "Install".
 
 ---
 
-### Configuration Arduino
+### 3️⃣ Configuration Arduino
 
 1. **Ouvrir** `src/stm32_mqtt_sensors.ino` dans Arduino IDE
 
@@ -299,9 +284,10 @@ char ssid[] = "VOTRE_SSID";
 char pass[] = "VOTRE_MOT_DE_PASSE";
 ```
 
-3. **Modifier l'adresse du broker MQTT** :
+3. **Modifier l'adresse du broker MQTT et les identifiants** :
 ```cpp
 client.begin("VOTRE_IP_BROKER", net);
+client.connect("STM32-IOT", "VOTRE_UTILISATEUR", "VOTRE_MOT_DE_PASSE_MQTT");
 ```
 
 4. **Sélectionner la carte** : Tools → Board → STM32L4 → B-L475E-IOT01A
@@ -336,7 +322,7 @@ Grille 3×3 de graphiques :
 
 ---
 
-## 🗄️ Base de Données
+## 💾 Base de Données
 
 ### Structure MongoDB
 
@@ -345,20 +331,22 @@ Grille 3×3 de graphiques :
 
 ### Schéma de Document
 
-```json
+```js
 {
-  "_id": ObjectId("..."),
-  "timestamp": ISODate("2026-01-04T19:15:26.000Z"),
-  "sensor_type": "temperature",
-  "topic": "/temperature",
-  "value": 22.3,
-  "unit": "°C",
+  _id: ObjectId("..."),
+  timestamp: ISODate("2026-01-04T19:15:26.000Z"),
+  sensor_type: "temperature",
+  topic: "/temperature",
+  value: 22.3,
+  unit: "°C"
 }
 ```
 
+> 🔒 La chaîne de connexion MongoDB Atlas contient des identifiants : ne jamais la publier sur GitHub.
+
 ---
 
-## ⚠️ Problèmes et Solutions
+## 🐛 Problèmes et Solutions
 
 ### 1. Perte de connexion WiFi/MQTT
 
@@ -369,10 +357,10 @@ Grille 3×3 de graphiques :
 if (!client.connected()) {
     client.disconnect();
     delay(5000);
-    client.begin("192.168.0.135", net);
-    if (client.connect("STM32-IOT", "user", "pass")) {
+    client.begin("VOTRE_IP_BROKER", net);
+    if (client.connect("STM32-IOT", "VOTRE_UTILISATEUR", "VOTRE_MOT_DE_PASSE_MQTT")) {
         Serial.println("Reconnected!");
-        client.subscribe("/ihebz");
+        client.subscribe("/test");
     }
 }
 ```
@@ -416,12 +404,21 @@ client.publish("/temperature", string_MQTT);
 
 ✅ **Résultat** : Données correctement formatées
 
+### 5. Connexion refusée par le broker
+
+**Symptôme** : la carte ou `mosquitto_sub` ne se connecte pas
+
+**Cause** : `allow_anonymous false` est activé, les identifiants sont obligatoires.
+
+**Solution** : fournir `-u <USER> -P <PASSWORD>` (ou les identifiants dans le code Arduino et les nœuds MQTT de Node-RED).
+
 ---
 
 ## 🎥 Démonstration
 
 ### Vidéo Complète (5 minutes)
-https://drive.google.com/file/d/1zKm94fT9ZjzvXOuhjBy3DmTO7Od-CmaY/view?usp=sharing
+
+👉 [Voir la vidéo](https://drive.google.com/file/d/1zKm94fT9ZjzvXOuhjBy3DmTO7Od-CmaY/view?usp=sharing)
 
 La vidéo de démonstration montre :
 
@@ -433,11 +430,13 @@ La vidéo de démonstration montre :
 6. **MongoDB** (30s) : Requêtes, documents, statistiques
 7. **Test robustesse** (30s) : Déconnexion/reconnexion
 
+📊 [Voir la présentation](docs/README_Presentation.md) • 🎥 [Détails vidéo](docs/README_Video.md)
+
 ### Commandes de Test
 
 **Visualiser les messages MQTT** :
 ```bash
-mosquitto_sub -h 192.168.0.135 -t "#" -v
+mosquitto_sub -h <IP_BROKER> -t "#" -v -u <USER> -P <PASSWORD>
 ```
 
 ---
@@ -446,8 +445,8 @@ mosquitto_sub -h 192.168.0.135 -t "#" -v
 
 ### Objectifs Atteints
 
-✅ **Acquisition multi-capteurs** : 6 capteurs, 12 valeurs, 1 Hz  
-✅ **Communication MQTT** : Stable, reconnexion automatique  
+✅ **Acquisition multi-capteurs** : 6 capteurs, 12 valeurs  
+✅ **Communication MQTT** : Stable, authentifiée, reconnexion automatique  
 ✅ **Workflow Node-RED** : 3 flows, 50+ nœuds  
 ✅ **Dashboard interactif** : 3 pages, temps réel  
 ✅ **Stockage MongoDB** : Persistance, requêtes optimisées  
@@ -483,7 +482,7 @@ mosquitto_sub -h 192.168.0.135 -t "#" -v
 
 ### Moyen Terme (1-2 mois)
 
-- 🔐 **Sécurité** : MQTTS (TLS), authentification JWT
+- 🔐 **Sécurité** : chiffrement MQTTS (TLS) en plus de l'authentification existante
 - 📈 **InfluxDB** : Migration vers time-series database
 - 🧠 **Machine Learning** : Détection d'anomalies
 - 📍 **Géolocalisation** : GPS, multi-dispositifs
@@ -501,25 +500,30 @@ mosquitto_sub -h 192.168.0.135 -t "#" -v
 
 ```
 Projet_Reseaux_Locaux_Iheb-Zaouali_Iheb-Rahmeni_3AGE1/
-├── README.md                    # Documentation complète
+├── README.md                          # Documentation complète (ce fichier)
 ├── src/
-│   ├── stm32_mqtt_sensors.ino  # Code Arduino
-│   └── Readme
+│   └── stm32_mqtt_sensors.ino         # Code Arduino
 ├── node-red/
-│   ├── flows.json              # Export Node-RED
-│   └── Readme
+│   ├── flows.json                     # Export Node-RED
+│   └── README_Configuration.md        # Import des flows, MQTT, ressources
 ├── docs/
-│   ├── images/                 # Captures d'écran
-│   └── video/                  # Vidéo démo
+│   ├── images/                        # Captures d'écran
+│   ├── video/                         # Vidéo démo
+│   ├── README_Commandes.md            # Commandes Mosquitto, tests, Node-RED
+│   ├── README_Presentation.md         # Lien de la présentation
+│   └── README_Video.md                # Lien de la vidéo
 └── config/
-    ├── mosquitto.conf          # Config MQTT
-    └── Readme
+    ├── mosquitto.conf                 # Config MQTT
+    └── README_Authentification.md     # Authentification Mosquitto
 ```
+
+> Le fichier `passwd` (mots de passe Mosquitto) ne doit **pas** être versionné : l'ajouter au `.gitignore`.
 
 ## 📞 Contact
 
-**Auteur** :  
+**Auteurs** :  
 - Iheb Zaouali : iheb.zaouali@etudiant-enit.utm.tn  
+- Iheb Rahmeni
 
 ---
 
