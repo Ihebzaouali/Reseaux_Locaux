@@ -430,8 +430,6 @@ La vidéo de démonstration montre :
 6. **MongoDB** (30s) : Requêtes, documents, statistiques
 7. **Test robustesse** (30s) : Déconnexion/reconnexion
 
-📊 [Voir la présentation](docs/README_Presentation.md) • 🎥 [Détails vidéo](docs/README_Video.md)
-
 ### Commandes de Test
 
 **Visualiser les messages MQTT** :
