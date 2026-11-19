@@ -261,7 +261,7 @@ Accès :
 6. Modifier les nœuds MQTT : adresse IP du broker, nom d'utilisateur, mot de passe
 7. Cliquer sur **"Deploy"** (bouton rouge en haut à droite)
 
-Plus de détails : [README_Configuration.md](node-red/README_Configuration.md)
+Plus de détails : [README_Configuration.md](node-red/Readme.md)
 
 #### Vérifier l'installation des palettes
 
