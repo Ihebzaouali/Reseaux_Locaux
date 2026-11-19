@@ -207,8 +207,8 @@ npm --version     # Doit afficher 9.x.x ou supérieur
 
 1. Télécharger l'installeur Windows (version 2.x) depuis : https://mosquitto.org/download/
 2. Exécuter l'installeur **en tant qu'administrateur** (installation par défaut dans `C:\Program Files\mosquitto\`). Les dépendances (OpenSSL, pthreads) sont incluses dans les versions récentes.
-3. Configurer l'authentification (obligatoire) : voir [README_Authentification.md](config/Readme.md)
-4. Lancer le broker et tester la communication : voir [README_Commandes.md](docs/video/Readme.md)
+3. Configurer l'authentification (obligatoire) : voir [README_Authentification.md](config/README_Authentification.md)
+4. Lancer le broker et tester la communication : voir [README_Commandes.md](docs/src/README_Commandes.md)
 
 > ⚠️ Avec `allow_anonymous false`, toutes les commandes `mosquitto_sub` / `mosquitto_pub` nécessitent `-u <USER> -P <PASSWORD>`.
 
@@ -261,7 +261,7 @@ Accès :
 6. Modifier les nœuds MQTT : adresse IP du broker, nom d'utilisateur, mot de passe
 7. Cliquer sur **"Deploy"** (bouton rouge en haut à droite)
 
-Plus de détails : [README_Configuration.md](node-red/Readme.md)
+Plus de détails : [README_Configuration.md](node-red/README_Configuration.md)
 
 #### Vérifier l'installation des palettes
 
