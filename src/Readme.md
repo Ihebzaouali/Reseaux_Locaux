@@ -19,7 +19,7 @@ Publication des données de capteurs d'une carte STM32 via MQTT (Mosquitto), ave
 **Terminal 1 :**
 
 ```bat
-cd \Users\ihebz\Desktop\mosquitto
+cd C:\mosquitto
 mosquitto -c mosquitto.conf -v
 ```
 
@@ -32,7 +32,7 @@ Ouvrir ensuite le fichier `stm32_mqtt_sensors.ino` et exécuter le code (télév
 ### 2.1 Vérification réseau
 
 ```bat
-cd \Users\ihebz\Desktop\mosquitto
+cd C:\mosquitto
 netstat -an | findstr :1883
 ipconfig
 ping 192.168.0.135
@@ -50,25 +50,25 @@ ping 192.168.0.22
 **Terminal 1 (abonné) :**
 
 ```bat
-cd \Users\ihebz\Desktop\mosquitto
-mosquitto_sub -h 192.168.0.135 -t "/ihebz" -u <USER> -P <PASSWORD>
+cd C:\mosquitto
+mosquitto_sub -h 192.168.0.135 -t "/test" -u <USER> -P <PASSWORD>
 ```
 
 **Terminal 2 (publieur) :**
 
 ```bat
-cd \Users\ihebz\Desktop\mosquitto
-mosquitto_pub -h 192.168.0.135 -t "/ihebz" -m "mynameisiheb" -u <USER> -P <PASSWORD>
+cd C:\mosquitto
+mosquitto_pub -h 192.168.0.135 -t "/test" -m "hello" -u <USER> -P <PASSWORD>
 ```
 
-**Résultat :** le message `mynameisiheb` s'affiche sur le **Terminal 1** (l'abonné).
+**Résultat :** le message `hello` s'affiche sur le **Terminal 1** (l'abonné).
 
 ---
 
 ## 3. Affichage des valeurs des topics
 
 ```bat
-cd \Users\ihebz\Desktop\mosquitto
+cd C:\mosquitto
 ```
 
 ### Tous les topics (broker local)
@@ -105,7 +105,7 @@ mosquitto_sub -h broker.hivemq.com -t "/temperature" -t "/Humidite" -t "/Pressio
 ## 4. Lancer Node-RED
 
 ```bat
-cd \Users\ihebz\Desktop\mosquitto
+cd C:\mosquitto
 node-red
 ```
 
