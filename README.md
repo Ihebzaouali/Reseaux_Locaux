@@ -494,29 +494,6 @@ mosquitto_sub -h <IP_BROKER> -t "#" -v -u <USER> -P <PASSWORD>
 
 ---
 
-## 📦 Structure du Dépôt
-
-```
-Projet_Reseaux_Locaux_Iheb-Zaouali_Iheb-Rahmeni_3AGE1/
-├── README.md                          # Documentation complète (ce fichier)
-├── src/
-│   └── stm32_mqtt_sensors.ino         # Code Arduino
-├── node-red/
-│   ├── flows.json                     # Export Node-RED
-│   └── README_Configuration.md        # Import des flows, MQTT, ressources
-├── docs/
-│   ├── images/                        # Captures d'écran
-│   ├── video/                         # Vidéo démo
-│   ├── README_Commandes.md            # Commandes Mosquitto, tests, Node-RED
-│   ├── README_Presentation.md         # Lien de la présentation
-│   └── README_Video.md                # Lien de la vidéo
-└── config/
-    ├── mosquitto.conf                 # Config MQTT
-    └── README_Authentification.md     # Authentification Mosquitto
-```
-
-> Le fichier `passwd` (mots de passe Mosquitto) ne doit **pas** être versionné : l'ajouter au `.gitignore`.
-
 ## 📞 Contact
 
 **Auteur** :  
